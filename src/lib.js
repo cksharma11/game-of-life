@@ -27,6 +27,23 @@ const createWorld = function(aliveCells, size){
   return world;
 }
 
+const findNeighbours = function(row, col, grid){
+  let neighbours = new Array();
+  neighbours.push({row, col : col + 1});
+  neighbours.push({row : row + 1, col : col + 1});
+  neighbours.push({row : row + 1, col});
+  neighbours.push({row : row + 1, col : col - 1});
+  neighbours.push({row, col : col - 1});
+  neighbours.push({row : row - 1, col : col - 1});
+  neighbours.push({row : row -1 , col});
+  neighbours.push({row : row - 1, col : col + 1});
+
+  return neighbours.filter((cell) => {
+    return grid[cell.row] != undefined && grid[cell.row][cell.col] != undefined ;
+  });
+}
+
 exports.createGrid = createGrid;
 exports.createWorld = createWorld;
 exports.generatePrintableGrid = generatePrintableGrid;
+exports.findNeighbours = findNeighbours;

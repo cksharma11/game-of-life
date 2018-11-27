@@ -2,7 +2,8 @@ const {equal, deepEqual} = require("assert");
 const {
   createGrid,
   generatePrintableGrid,
-  createWorld
+  createWorld,
+  findNeighbours
 } = require("../src/lib.js");
 
 describe("createGrid", function(){
@@ -35,6 +36,30 @@ describe("createWorld", function(){
   });
   it("should return 2D array containing 1's for input array containing positions for alive cells", function(){
     deepEqual(createWorld([{row: 0, col:0}], 2), [[1,0],[0,0]]);
+  });
+});
+
+describe("findNeighbours", function(){
+  it("should return array of objects containing row and columns of all neighbours", function(){
+    let expectedOut = [
+      {row:1, col:2},
+      {row:2, col:2},
+      {row:2, col:1},
+      {row:2, col:0},
+      {row:1, col:0},
+      {row:0, col:0},
+      {row:0, col:1},
+      {row:0, col:2}
+    ];
+    deepEqual(findNeighbours(1,1,createGrid(3)), expectedOut);
+  });
+  it("should return array of objects containing all neighbours", function(){
+    let expectedOut = [
+      {"col": 1,"row": 0},
+      {"col": 1,"row": 1},
+      {"col": 0,"row": 1}
+    ];
+    deepEqual(findNeighbours(0,0,createGrid(2)), expectedOut);
   });
 });
 
