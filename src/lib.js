@@ -10,4 +10,14 @@ const createGrid = function(size){
   return grid;
 }
 
+const generatePrintableGrid = function(grid){
+  let printableGrid = new Array();
+  for(let row = 0; row < grid.length; row ++){
+    let line = '|'+grid[row].map((cell)=>cell).join("|")+'|';
+    printableGrid.push(line);
+  }
+  return printableGrid;
+}
+
 exports.createGrid = createGrid;
+exports.generatePrintableGrid = generatePrintableGrid;
