@@ -13,7 +13,7 @@ const createGrid = function(size){
 const generatePrintableGrid = function(grid){
   let printableGrid = new Array();
   for(let row = 0; row < grid.length; row ++){
-    let line = '|'+grid[row].map((cell)=>cell).join("|")+'|';
+    let line = '|'+grid[row].join("|")+'|';
     printableGrid.push(line);
   }
   return printableGrid;
