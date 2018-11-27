@@ -19,5 +19,14 @@ const generatePrintableGrid = function(grid){
   return printableGrid;
 }
 
+const createWorld = function(aliveCells, size){
+  let world = createGrid(size);
+  for(let aliveCell of aliveCells){
+    world[aliveCell.row][aliveCell.col] = 1;
+  }
+  return world;
+}
+
 exports.createGrid = createGrid;
+exports.createWorld = createWorld;
 exports.generatePrintableGrid = generatePrintableGrid;

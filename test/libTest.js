@@ -1,7 +1,8 @@
 const {equal, deepEqual} = require("assert");
 const {
   createGrid,
-  generatePrintableGrid
+  generatePrintableGrid,
+  createWorld
 } = require("../src/lib.js");
 
 describe("createGrid", function(){
@@ -22,6 +23,18 @@ describe("generatePrintableGrid", function(){
   });
   it("should return empty array for 0 size grid", function(){
     deepEqual(generatePrintableGrid(createGrid(0)), []);
+  });
+});
+
+describe("createWorld", function(){
+  it("should return 2D array containing all 0's for empty input array", function(){
+    deepEqual(createWorld([], 1), [[0]]);
+  });
+  it("should return 2D array containing all 1's for input array containing positions for alive cells", function(){
+    deepEqual(createWorld([{row: 0, col:0}], 1), [[1]]);
+  });
+  it("should return 2D array containing 1's for input array containing positions for alive cells", function(){
+    deepEqual(createWorld([{row: 0, col:0}], 2), [[1,0],[0,0]]);
   });
 });
 
