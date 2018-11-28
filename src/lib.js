@@ -1,4 +1,3 @@
-// Create nXn grid
 const createGrid = function(size){
   let grid = new Array();
   let counter = 0;
@@ -47,7 +46,6 @@ const countAliveNeighbours = function(row, col, grid){
   let neighbours = findNeighbours(row, col, grid);
   let aliveNeighboursCount = 0;
   for(let neighbour of neighbours){
-  //  console.log(neighbour);
     if(grid[neighbour.row][neighbour.col] == 1){
       aliveNeighboursCount++;
     } 
