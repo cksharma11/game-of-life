@@ -56,8 +56,8 @@ const countAliveNeighbours = function(row, col, grid){
 } 
 
 const getCellRules = function(cell){
-  const aliveCellRules = [0,0,1,1,0,0,0,0];
-  const deadCellRules = [0,0,0,1,0,0,0,0];
+  const aliveCellRules = [0,0,1,1,0,0,0,0,0];
+  const deadCellRules = [0,0,0,1,0,0,0,0,0];
   const allCellRules = [deadCellRules, aliveCellRules];
   return allCellRules[cell];
 }
