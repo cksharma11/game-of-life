@@ -43,7 +43,19 @@ const findNeighbours = function(row, col, grid){
   });
 }
 
+const countAliveNeighbours = function(row, col, grid){
+  let neighbours = findNeighbours(row, col, grid);
+  let aliveNeighboursCount = 0;
+  for(let neighbour of neighbours){
+    if(grid[neighbour.row][neighbour.col] == 1){
+      aliveNeighboursCount++;
+    } 
+  }
+  return aliveNeighboursCount;
+} 
+
 exports.createGrid = createGrid;
 exports.createWorld = createWorld;
 exports.generatePrintableGrid = generatePrintableGrid;
 exports.findNeighbours = findNeighbours;
+exports.countAliveNeighbours = countAliveNeighbours;

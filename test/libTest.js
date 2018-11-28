@@ -3,7 +3,8 @@ const {
   createGrid,
   generatePrintableGrid,
   createWorld,
-  findNeighbours
+  findNeighbours,
+  countAliveNeighbours
 } = require("../src/lib.js");
 
 describe("createGrid", function(){
@@ -40,7 +41,7 @@ describe("createWorld", function(){
 });
 
 describe("findNeighbours", function(){
-  it("should return array of objects containing row and columns of all neighbours", function(){
+  it("should return all neighbours for 3x3 world", function(){
     let expectedOut = [
       {row:1, col:2},
       {row:2, col:2},
@@ -53,7 +54,7 @@ describe("findNeighbours", function(){
     ];
     deepEqual(findNeighbours(1,1,createGrid(3)), expectedOut);
   });
-  it("should return array of objects containing all neighbours", function(){
+  it("should return all neighbours for 2x2 world", function(){
     let expectedOut = [
       {"col": 1,"row": 0},
       {"col": 1,"row": 1},
@@ -63,3 +64,12 @@ describe("findNeighbours", function(){
   });
 });
 
+describe("countAliveNeighbours", function(){
+  it("should return 0 for world containing all dead cells", function(){
+    deepEqual(countAliveNeighbours(0, 0, createGrid(5)), 0);
+  });
+  it("should return number for alive neighbours cells", function(){
+    let world = createWorld([{row:0,col:1},{row:1,col:0},{row:1,col:1}],3);
+    deepEqual(countAliveNeighbours(0, 0, world), 3);
+  });
+});
