@@ -5,7 +5,8 @@ const {
   createWorld,
   findNeighbours,
   countAliveNeighbours,
-  evaluateNextGeneration
+  evaluateNextGeneration,
+  evaluateNthGeneration
 } = require("../src/lib.js");
 
 describe("createGrid", function(){
@@ -98,5 +99,38 @@ describe("evaluateNextGeneration", function(){
       [1,0,1],
       [0,1,0]];
     deepEqual(evaluateNextGeneration(world), expectedNextGen);
+  });
+});
+
+describe("evaluateNextGeneration", function(){
+  it("should return empty world for empty world at any generation", function(){
+    deepEqual(evaluateNthGeneration(createGrid(0), 0), []);
+  });
+  it("should return nth generation world for non empty world", function(){
+    let world = createWorld([
+      {row: 0, col: 0},
+      {row: 0, col: 2},
+      {row: 1, col: 1},
+      {row: 2, col: 0},
+      {row: 2, col: 2}], 3);
+    let expectedOutput = [[0,1,0],
+      [1,0,1],
+      [0,1,0]];
+    deepEqual(evaluateNthGeneration(world, 1), expectedOutput);
+    world = createWorld([
+      {row: 0, col: 0},
+      {row: 0, col: 1},
+      {row: 0, col: 2},
+      {row: 1, col: 0},
+      {row: 1, col: 1},
+      {row: 1, col: 2},
+      {row: 2, col: 0},
+      {row: 2, col: 1},
+      {row: 2, col: 2}], 3);
+    expectedOutput = [[0,0,0],
+      [0,0,0],
+      [0,0,0]];
+    deepEqual(evaluateNthGeneration(world, 2), expectedOutput);
+    deepEqual(evaluateNthGeneration(world, 3), expectedOutput);
   });
 });

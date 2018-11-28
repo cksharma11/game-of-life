@@ -75,9 +75,20 @@ const evaluateNextGeneration = function(grid){
   return nextGenWorld;
 }
 
+const evaluateNthGeneration = function(grid, generationCount){
+  let nthGeneration = grid;
+  let count = 0;
+  while(count < generationCount){
+    nthGeneration = evaluateNextGeneration(nthGeneration);
+    count ++;
+  }
+  return nthGeneration;
+}
+
 exports.createGrid = createGrid;
 exports.createWorld = createWorld;
 exports.generatePrintableGrid = generatePrintableGrid;
 exports.findNeighbours = findNeighbours;
 exports.countAliveNeighbours = countAliveNeighbours;
 exports.evaluateNextGeneration = evaluateNextGeneration;
+exports.evaluateNthGeneration = evaluateNthGeneration;
