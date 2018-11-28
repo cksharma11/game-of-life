@@ -1,18 +1,18 @@
 const readline = require('readline-sync');
 const {parseInputs} = require('./src/game_util.js');
 const {
-  createGrid, 
   createWorld, 
   evaluateNthGeneration, 
   generatePrintableGrid
 } = require('./src/lib.js');
 
 const main = function(){
+  let aliveCells = [];
   let sizeOfWorld = readline.questionInt("Enter size of the world : ");
-  let world = createGrid(sizeOfWorld);
+  let world = createWorld(aliveCells,sizeOfWorld);
   console.log(generatePrintableGrid(world).join("\n"));
 
-  let aliveCells = readline.question("Enter coordinates of alive cells :");
+  aliveCells = readline.question("Enter coordinates of alive cells :");
   aliveCells = parseInputs(aliveCells); 
   world = createWorld(aliveCells, sizeOfWorld);
   console.log(generatePrintableGrid(world).join("\n"));
