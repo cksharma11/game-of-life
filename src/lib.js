@@ -47,6 +47,7 @@ const countAliveNeighbours = function(row, col, grid){
   let neighbours = findNeighbours(row, col, grid);
   let aliveNeighboursCount = 0;
   for(let neighbour of neighbours){
+  //  console.log(neighbour);
     if(grid[neighbour.row][neighbour.col] == 1){
       aliveNeighboursCount++;
     } 
@@ -54,8 +55,29 @@ const countAliveNeighbours = function(row, col, grid){
   return aliveNeighboursCount;
 } 
 
+const getCellRules = function(cell){
+  const aliveCellRules = [0,0,1,1,0,0,0,0];
+  const deadCellRules = [0,0,0,1,0,0,0,0];
+  const allCellRules = [deadCellRules, aliveCellRules];
+  return allCellRules[cell];
+}
+
+const evaluateNextGeneration = function(grid){
+  let nextGenWorld = createGrid(grid.length);
+  for(let row=0; row<grid.length; row++){
+    for(let col=0; col<grid.length; col++){
+      let cell = grid[row][col];
+      let cellRules = getCellRules(cell);
+      let aliveNeighboursCount = countAliveNeighbours(row, col, grid);
+      nextGenWorld[row][col] = cellRules[aliveNeighboursCount];
+    }
+  }
+  return nextGenWorld;
+}
+
 exports.createGrid = createGrid;
 exports.createWorld = createWorld;
 exports.generatePrintableGrid = generatePrintableGrid;
 exports.findNeighbours = findNeighbours;
 exports.countAliveNeighbours = countAliveNeighbours;
+exports.evaluateNextGeneration = evaluateNextGeneration;

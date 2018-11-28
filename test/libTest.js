@@ -4,7 +4,8 @@ const {
   generatePrintableGrid,
   createWorld,
   findNeighbours,
-  countAliveNeighbours
+  countAliveNeighbours,
+  evaluateNextGeneration
 } = require("../src/lib.js");
 
 describe("createGrid", function(){
@@ -71,5 +72,31 @@ describe("countAliveNeighbours", function(){
   it("should return number for alive neighbours cells", function(){
     let world = createWorld([{row:0,col:1},{row:1,col:0},{row:1,col:1}],3);
     deepEqual(countAliveNeighbours(0, 0, world), 3);
+    world = createWorld([
+      {row: 0, col: 0},
+      {row: 0, col: 2},
+      {row: 1, col: 1},
+      {row: 2, col: 0},
+      {row: 2, col: 2}], 3);
+    deepEqual(countAliveNeighbours(0, 0, world), 1);
+    deepEqual(countAliveNeighbours(0, 1, world), 3);
+  });
+});
+
+describe("evaluateNextGeneration", function(){
+  it("should return empty world for empty world", function(){
+    deepEqual(evaluateNextGeneration(createGrid(0)), []);
+  });
+  it("should return next generation world for non empty world", function(){
+    let world = createWorld([
+      {row: 0, col: 0},
+      {row: 0, col: 2},
+      {row: 1, col: 1},
+      {row: 2, col: 0},
+      {row: 2, col: 2}], 3);
+    let expectedNextGen = [[0,1,0],
+      [1,0,1],
+      [0,1,0]];
+    deepEqual(evaluateNextGeneration(world), expectedNextGen);
   });
 });
