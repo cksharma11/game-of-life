@@ -29,11 +29,9 @@ const findNeighbours = function(row, col, grid){
 
 const countAliveNeighbours = function(row, col, grid){
   let neighbours = findNeighbours(row, col, grid);
-  let aliveNeighboursCount = 0;
-  for(let neighbour of neighbours){
-      aliveNeighboursCount = aliveNeighboursCount + grid[neighbour.row][neighbour.col];
-  }
-  return aliveNeighboursCount;
+  return neighbours.reduce((neighboursCount, currentNeighbour) => {
+    return neighboursCount + grid[currentNeighbour.row][currentNeighbour.col];
+  },0);
 } 
 
 const getCellRules = function(cell){
