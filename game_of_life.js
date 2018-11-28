@@ -1,9 +1,8 @@
 const readline = require('readline-sync');
-const {parseInputs} = require('./src/game_util.js');
+const {parseInputs, generatePrintableGrid} = require('./src/game_io.js');
 const {
   createWorld, 
-  evaluateNthGeneration, 
-  generatePrintableGrid
+  evaluateNthGeneration 
 } = require('./src/lib.js');
 
 const main = function(){

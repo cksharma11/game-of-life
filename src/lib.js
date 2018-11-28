@@ -9,15 +9,6 @@ const createGrid = function(size){
   return grid;
 }
 
-const generatePrintableGrid = function(grid){
-  let printableGrid = new Array();
-  for(let row = 0; row < grid.length; row ++){
-    let line = '|'+grid[row].join("|")+'|';
-    printableGrid.push(line);
-  }
-  return printableGrid;
-}
-
 const createWorld = function(aliveCells, size){
   let world = createGrid(size);
   for(let aliveCell of aliveCells){
@@ -83,7 +74,6 @@ const evaluateNthGeneration = function(grid, generationCount){
 
 exports.createGrid = createGrid;
 exports.createWorld = createWorld;
-exports.generatePrintableGrid = generatePrintableGrid;
 exports.findNeighbours = findNeighbours;
 exports.countAliveNeighbours = countAliveNeighbours;
 exports.evaluateNextGeneration = evaluateNextGeneration;
