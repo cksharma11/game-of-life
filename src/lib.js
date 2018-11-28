@@ -46,9 +46,7 @@ const countAliveNeighbours = function(row, col, grid){
   let neighbours = findNeighbours(row, col, grid);
   let aliveNeighboursCount = 0;
   for(let neighbour of neighbours){
-    if(grid[neighbour.row][neighbour.col] == 1){
-      aliveNeighboursCount++;
-    } 
+      aliveNeighboursCount = aliveNeighboursCount + grid[neighbour.row][neighbour.col];
   }
   return aliveNeighboursCount;
 } 
