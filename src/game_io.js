@@ -1,11 +1,9 @@
 const parseInputs = function(userInputs){
   userInputs = "[" + userInputs + "]";
   userInputs = JSON.parse(userInputs);
-  let parsedUserInputs = new Array();
-  for(let input of userInputs){
-    let parsedUserInput = {row: input[0], col: input[1]};
-    parsedUserInputs.push(parsedUserInput);
-  }
+  let parsedUserInputs = userInputs.map(userInput => {
+    return {row: userInput[0], col: userInput[1]};
+  });
   return parsedUserInputs;
 }
 
